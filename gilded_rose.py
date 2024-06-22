@@ -7,7 +7,7 @@ class GildedRose(object):
 
     def update_quality(self):
         for item in self.items:
-            
+
                       
             if item.quality < 50:
                  if item.quality > 0 and item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert" and item.name != "Sulfuras, Hand of Ragnaros" and "Conjured" not in item.name:
@@ -19,20 +19,20 @@ class GildedRose(object):
                     else:
                         item.quality = item.quality - 1
                 # Aged Brie and Backstage passes will increase in quality as they get older. So what I did was 
-                # to check that the name is either Aged Brie or Backstage passes and then add 1 to quality if it is backstage passes 
-                # and sell in is greater than 5
-                # is if it is less than 50  then check if the sell by date is 10 or less if so add 2 to quality else if sell by date is 5 or less
+                # to check that the name is either Aged Brie or Backstage passes and then add 1 to quality if it is backstage passes
+                # and the backstage passes quality is equal to 49 (so that the highest quality it will add up to is 50) else if it is not equal to 49 which 
+                # is if it is less than 49 then check if the sell by date is 10 or less if so add 2 to quality else if sell by date is 5 or less
                 # then add 3 to quality else set quality to zero.
-                 if item.name == "Backstage passes to a TAFKAL80ETC concert" and item.sell_in > 5 or item.name == "Aged Brie" and item.quality < 50:
+                 if item.name == "Backstage passes to a TAFKAL80ETC concert" and item.quality > 0 or item.name == "Aged Brie" and item.quality < 50:
                       item.quality = item.quality +  1
                  elif item.name == "Backstage passes to a TAFKAL80ETC concert" and item.quality < 49:
-                    if item.sell_in < 10 or item.sell_in == 10 :
+                    if item.sell_in <= 10:
                         item.quality = item.quality + 2
-                    elif item.sell_in < 5 or item.sell_in == 5:
+                    elif item.sell_in <= 5:
                         item.quality = item.quality + 3
-                 elif item.sell_in < 0 and item.name == "Backstage passes to a TAFKAL80ETC concert":
+                 if item.sell_in <= 0 and item.name == "Backstage passes to a TAFKAL80ETC concert":
                         item.quality = 0
-                 elif "Conjured" in item.name and item.sell_in > 0:
+                 if "Conjured" in item.name and item.sell_in > 0:
             
                             item.quality = item.quality - 2
                  
