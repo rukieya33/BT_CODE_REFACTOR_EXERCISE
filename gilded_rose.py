@@ -23,12 +23,12 @@ class GildedRose(object):
                 # and the backstage passes quality is equal to 49 (so that the highest quality it will add up to is 50) else if it is not equal to 49 which 
                 # is if it is less than 49 then check if the sell by date is 10 or less if so add 2 to quality else if sell by date is 5 or less
                 # then add 3 to quality else set quality to zero.
-                 if item.name == "Backstage passes to a TAFKAL80ETC concert" and item.quality > 0 or item.name == "Aged Brie" and item.quality < 50:
+                 if item.name == "Backstage passes to a TAFKAL80ETC concert" and item.sell_in >= 11 or item.name == "Aged Brie" and item.quality < 50:
                       item.quality = item.quality +  1
                  elif item.name == "Backstage passes to a TAFKAL80ETC concert" and item.quality < 49:
-                    if item.sell_in <= 10:
+                    if item.sell_in < 10:
                         item.quality = item.quality + 2
-                    elif item.sell_in <= 5:
+                    elif item.sell_in < 5:
                         item.quality = item.quality + 3
                  if item.sell_in <= 0 and item.name == "Backstage passes to a TAFKAL80ETC concert":
                         item.quality = 0
